@@ -1,5 +1,4 @@
-/* ========== style.css ========== */
-/* ESTILOS GENERALES */
+/* ========== ESTILOS GENERALES ========== */
 * {
     margin: 0;
     padding: 0;
@@ -8,13 +7,13 @@
 }
 
 body {
-    background-color: #0d0f12; /* negro moderno */
+    background-color: #0d0f12;
     color: #f0f4fa;
     line-height: 1.5;
     overflow-x: hidden;
 }
 
-/* ===== ROBOT FUTURISTA DE FONDO ===== */
+/* ===== ROBOT FUTURISTA ===== */
 .robot-background {
     position: fixed;
     top: 0;
@@ -169,6 +168,7 @@ body {
     50% { transform: translateY(-15px); }
 }
 
+/* ===== ANIMACIONES ROBOT ===== */
 @keyframes glow {
     0%, 100% { filter: brightness(1); }
     50% { filter: brightness(1.5); }
@@ -194,27 +194,7 @@ body {
     50% { transform: scale(1.2); }
 }
 
-@keyframes breatheGradient {
-    0% { opacity: 0.5; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.2); }
-}
-
-.particles {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="1.5" fill="%23ff9f1c" opacity="0.5"/><circle cx="45" cy="30" r="2" fill="%234ae5c3" opacity="0.4"/><circle cx="20" cy="50" r="1.2" fill="%23ff4d4d" opacity="0.4"/><circle cx="55" cy="5" r="1.8" fill="%236dd5ed" opacity="0.5"/></svg>');
-    background-size: 180px 180px;
-    animation: drift 40s linear infinite;
-    z-index: -1;
-    pointer-events: none;
-}
-
-@keyframes drift {
-    from { background-position: 0 0; }
-    to { background-position: 300px 300px; }
-}
-
-/* ===== HEADER ANIMADO ===== */
+/* ===== HEADER ===== */
 header {
     display: flex;
     justify-content: space-between;
@@ -242,10 +222,6 @@ header {
     background-clip: text;
     color: transparent;
     animation: pulseGlow 2.5s infinite;
-}
-
-.logo-span {
-    color: #ff9f1c;
 }
 
 @keyframes pulseGlow {
@@ -339,7 +315,7 @@ nav {
     100% { transform: translateY(0); }
 }
 
-/* ===== SECCIONES GENERALES ===== */
+/* ===== SECCIONES ===== */
 section {
     padding: 5rem 8%;
     position: relative;
@@ -654,6 +630,299 @@ footer {
     transform: translateY(0);
 }
 
+/* ===== CHATBOT ===== */
+.chatbot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 100px;
+    z-index: 9999;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.chatbot-button {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 30px #00ffff;
+    animation: pulse-chatbot 2s infinite;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.chatbot-button:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-button i {
+    font-size: 2.5rem;
+    color: #0d0f12;
+}
+
+.chatbot-notification {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4d4d;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 2px solid #0d0f12;
+}
+
+.chatbot-window {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: rgba(13, 15, 18, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid #00ffff;
+    border-radius: 25px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+    animation: slideIn-chatbot 0.3s ease-out;
+}
+
+.chatbot-window.active {
+    display: flex;
+}
+
+@keyframes slideIn-chatbot {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chatbot-header {
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #0d0f12;
+}
+
+.chatbot-header i {
+    font-size: 1.8rem;
+}
+
+.chatbot-header span {
+    flex: 1;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.chatbot-close {
+    background: transparent;
+    border: none;
+    color: #0d0f12;
+    cursor: pointer;
+    font-size: 1.3rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.chatbot-close:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    animation: fadeIn-message 0.3s;
+}
+
+@keyframes fadeIn-message {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.bot {
+    justify-content: flex-start;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.user .message-content {
+    background: linear-gradient(135deg, #ff9f1c, #ff4d4d);
+    color: #0d0f12;
+    border-radius: 20px 20px 5px 20px;
+}
+
+.message-avatar {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d0f12;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    border-radius: 20px 20px 20px 5px;
+    color: white;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.chatbot-input-area {
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid rgba(0, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-input-area input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    border-radius: 25px;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.chatbot-input-area input:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+.chatbot-input-area input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.chatbot-input-area button {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.chatbot-input-area button:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-input-area button i {
+    font-size: 1.2rem;
+    color: #0d0f12;
+}
+
+.chatbot-suggestions {
+    padding: 0 1rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.suggestion-btn {
+    background: transparent;
+    border: 1px solid #00ffff;
+    color: #00ffff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.suggestion-btn:hover {
+    background: #00ffff;
+    color: #0d0f12;
+    transform: scale(1.05);
+}
+
+@keyframes pulse-chatbot {
+    0%, 100% {
+        box-shadow: 0 0 30px #00ffff;
+    }
+    50% {
+        box-shadow: 0 0 50px #ff00ff;
+    }
+}
+
+/* ===== TYPING INDICATOR ===== */
+.typing-indicator .message-content {
+    display: flex;
+    gap: 4px;
+    padding: 1rem 1.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #00ffff;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 800px) {
     header {
@@ -681,6 +950,26 @@ footer {
     nav {
         justify-content: center;
     }
+    
+    .chatbot-container {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .chatbot-window {
+        width: 300px;
+        height: 450px;
+        right: -10px;
+    }
+    
+    .chatbot-button {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .chatbot-button i {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -696,183 +985,4 @@ footer {
         font-size: 3rem;
         gap: 1.5rem;
     }
-}
-/*/* ===== ROBOT FUTURISTA ===== */
-.robot-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-.robot-container {
-    position: absolute;
-    bottom: 5%;
-    right: 2%;
-    width: 500px;
-    height: 500px;
-}
-
-.robot {
-    position: relative;
-    width: 250px;
-    height: 350px;
-    margin: 0 auto;
-    animation: robotWalk 20s linear infinite;
-}
-
-@keyframes robotWalk {
-    0% { transform: translateX(0) rotate(0deg); }
-    25% { transform: translateX(-50px) rotate(-3deg); }
-    50% { transform: translateX(0) rotate(0deg); }
-    75% { transform: translateX(50px) rotate(3deg); }
-    100% { transform: translateX(0) rotate(0deg); }
-}
-
-.robot-head {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, #00ffff, #ff00ff);
-    border-radius: 30px;
-    margin: 0 auto;
-    animation: glow 2s infinite;
-    box-shadow: 0 0 50px #00ffff;
-}
-
-.robot-eye {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: white;
-    border-radius: 50%;
-    top: 30px;
-    animation: blink 3s infinite;
-}
-
-.robot-eye.left { left: 20px; }
-.robot-eye.right { right: 20px; }
-
-.robot-antenna {
-    position: absolute;
-    width: 4px;
-    height: 40px;
-    background: linear-gradient(135deg, #00ffff, #ff00ff);
-    top: -40px;
-    left: 48px;
-    animation: antennaWave 2s infinite;
-}
-
-.robot-antenna::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: #ff00ff;
-    border-radius: 50%;
-    top: -8px;
-    left: -4px;
-    animation: pulse 1s infinite;
-}
-
-.robot-body {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(135deg, #00ffff, #ff00ff);
-    border-radius: 30px;
-    margin: 15px auto;
-    animation: glow 3s infinite;
-    box-shadow: 0 0 60px #ff00ff;
-}
-
-.robot-chest {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 15px;
-    top: 35px;
-    left: 35px;
-    overflow: hidden;
-}
-
-.robot-heart {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #ff0000, #ff00ff);
-    animation: heartbeat 1.5s infinite;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-}
-
-.robot-arm {
-    position: absolute;
-    width: 40px;
-    height: 100px;
-    background: linear-gradient(135deg, #00ffff, #ff00ff);
-    border-radius: 15px;
-    top: 40px;
-    animation: armMove 3s infinite;
-}
-
-.robot-arm.left { left: -30px; transform-origin: top right; }
-.robot-arm.right { right: -30px; transform-origin: top left; }
-
-@keyframes armMove {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(25deg); }
-}
-
-.robot-legs {
-    display: flex;
-    justify-content: space-between;
-    width: 120px;
-    margin: 0 auto;
-}
-
-.robot-leg {
-    width: 40px;
-    height: 80px;
-    background: linear-gradient(135deg, #00ffff, #ff00ff);
-    border-radius: 15px;
-    animation: legMove 2s infinite;
-}
-
-.robot-leg.left { animation-delay: 0s; }
-.robot-leg.right { animation-delay: 1s; }
-
-@keyframes legMove {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes glow {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.5); }
-}
-
-@keyframes blink {
-    0%, 90%, 100% { transform: scaleY(1); }
-    95% { transform: scaleY(0.1); }
-}
-
-@keyframes antennaWave {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(15deg); }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.8); opacity: 0.8; }
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
 }
