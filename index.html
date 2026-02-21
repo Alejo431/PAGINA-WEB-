@@ -10,10 +10,30 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Fondo animado -->
-    <div class="moving-gradient"></div>
-    <div class="particles"></div>
-
+    <!-- FONDO CON ROBOT FUTURISTA -->
+<div class="robot-background">
+    <div class="robot-container">
+        <div class="robot">
+            <div class="robot-head">
+                <div class="robot-eye left"></div>
+                <div class="robot-eye right"></div>
+                <div class="robot-antenna"></div>
+            </div>
+            <div class="robot-body">
+                <div class="robot-chest">
+                    <div class="robot-heart"></div>
+                </div>
+                <div class="robot-arm left"></div>
+                <div class="robot-arm right"></div>
+            </div>
+            <div class="robot-legs">
+                <div class="robot-leg left"></div>
+                <div class="robot-leg right"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
     <!-- HEADER -->
     <header>
         <div class="logo">⚡ ALEJANDRO<span class="logo-span">MONSALVE</span></div>
@@ -31,7 +51,7 @@
     <div class="social-float">
         <a href="https://wa.me/573001562405" target="_blank"><i class="fab fa-whatsapp"></i></a>
         <a href="https://www.instagram.com/alejandromonsalve_g" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@alejodev" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="http://www.tiktok.com/@alejandro.monsalv122" target="_blank"><i class="fab fa-tiktok"></i></a>
         <a href="https://github.com/Alejo431" target="_blank"><i class="fab fa-github"></i></a>
     </div>
 
@@ -120,7 +140,7 @@
             <i class="fas fa-credit-card" style="color:#4ae5c3;"></i>
             <i class="fas fa-bolt" style="color:#6dd5ed;"></i>
         </div>
-        <p class="payment-text">Transferencia · Nequi · Daviplata · PSE</p>
+        <p class="payment-text">Transferencia · Nequi ·  PSE</p>
     </section>
 
     <!-- FORMULARIO CORREGIDO -->
@@ -128,8 +148,10 @@
         <h2 class="reveal">📬 Escríbenos YA</h2>
         <div class="form-container reveal" id="formContainer">
             <form id="contactForm" action="https://formspree.io/f/xreapnvz" method="POST">
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="email" name="email" placeholder="Tu email" required>
+                
+                <input type="text" name="nombre" placeholder="Tu nombre" required><input type="text" name="nombre" placeholder="Tel" required>
+                <input type="email" n
+                ame="email" placeholder="Tu email" required>
                 <textarea name="mensaje" rows="4" placeholder="Cuéntanos tu idea..."></textarea>
                 <button type="submit" class="btn-enviar">💬 Enviar mensaje</button>
             </form>
@@ -139,6 +161,38 @@
         </div>
     </section>
 
+    <!-- CHATBOT FLOTANTE - VERSIÓN FUTURISTA -->
+<div class="chatbot-container">
+    <div class="chatbot-button" id="chatbotToggle">
+        <i class="fas fa-robot"></i>
+        <span class="chatbot-notification">1</span>
+    </div>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <span>AlejoBot - Asistente Virtual</span>
+            <button class="chatbot-close" id="chatbotClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">
+                <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                <div class="message-content">
+                    ¡Hola! Soy AlejoBot 🤖<br>¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbotInput" placeholder="Escribe tu mensaje..." autocomplete="off">
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="chatbot-suggestions">
+            <button class="suggestion-btn">Precios</button>
+            <button class="suggestion-btn">Servicios</button>
+            <button class="suggestion-btn">Contacto</button>
+            <button class="suggestion-btn">WhatsApp</button>
+        </div>
+    </div>
+</div>
     <!-- FOOTER -->
     <footer>
         <p>© 2025 Alejandro Monsalve Gómez · Colombia Todos los derechos estan  reservados · <i class="fas fa-bolt" style="color:#ff9f1c;"></i> páginas baratas que venden</p>
